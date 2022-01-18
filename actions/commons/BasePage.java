@@ -16,6 +16,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
 
 	private int timeOutInSecound = 30;
+
+	public static BasePage getBasePage() {
+		return new BasePage();
+	}
 	
 	public void openPageUrl(WebDriver driver, String url) {
 		driver.get(url);
@@ -109,19 +113,20 @@ public class BasePage {
 		}
 	}
 
-	public By getByXpath(String xpathLocator) {
+	private By getByXpath(String xpathLocator) {
 		return By.xpath(xpathLocator);
 	}
 
-	public WebElement getWebElement(WebDriver driver, String xpathLocator) {
+	private WebElement getWebElement(WebDriver driver, String xpathLocator) {
 		return driver.findElement(getByXpath(xpathLocator));
 	}
 
-	public List<WebElement> getListWebElement(WebDriver driver, String xpathLocator) {
+	private List<WebElement> getListWebElement(WebDriver driver, String xpathLocator) {
 		return driver.findElements(getByXpath(xpathLocator));
 	}
 
 	public void clickToElement(WebDriver driver, String xpathLocator) {
+		waitForElementClickable(driver, xpathLocator);
 		getWebElement(driver, xpathLocator).click();
 	}
 
@@ -129,10 +134,6 @@ public class BasePage {
 		WebElement element = getWebElement(driver, xpathLocator);
 		element.clear();
 		element.sendKeys(key);
-	}
-
-	public String getTextElement(WebDriver driver, String xpathLocator) {
-		return getWebElement(driver, xpathLocator).getText();
 	}
 
 	public void selectItemInDefaultDropdown(WebDriver driver, String xpathLocator, String textItem) {
@@ -225,14 +226,17 @@ public class BasePage {
 	}
 
 	public String getElementAttribute(WebDriver driver, String xpathLocator, String attributeName) {
+		waitForElementVisible(driver, xpathLocator);
 		return getWebElement(driver, xpathLocator).getAttribute(attributeName);
 	}
 
 	public String getElementText(WebDriver driver, String xpathLocator) {
+		waitForElementVisible(driver, xpathLocator);
 		return getWebElement(driver, xpathLocator).getText();
 	}
 
 	public String getElementCssValue(WebDriver driver, String xpathLocator, String propertyName) {
+		waitForElementVisible(driver, xpathLocator);
 		return getWebElement(driver, xpathLocator).getCssValue(propertyName);
 	}
 
