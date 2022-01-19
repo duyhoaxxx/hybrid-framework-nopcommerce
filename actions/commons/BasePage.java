@@ -39,16 +39,18 @@ public class BasePage {
 
 	public void backToPage(WebDriver driver) {
 		driver.navigate().back();
-		;
 	}
 
 	public void forwardToPage(WebDriver driver) {
 		driver.navigate().forward();
-		;
 	}
 
 	public void refreshCurrentPage(WebDriver driver) {
 		driver.navigate().refresh();
+	}
+	
+	public void zoomOut(WebDriver driver) {
+		driver.manage().window().maximize();
 	}
 
 	public Alert waitForAlertPresence(WebDriver driver) {
