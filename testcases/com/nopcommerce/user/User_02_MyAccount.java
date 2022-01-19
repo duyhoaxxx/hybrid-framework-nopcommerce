@@ -9,8 +9,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import commons.BasePage;
+import pageObjects.HomePageObject;
+import pageObjects.RegisterPageObject;
 
 public class User_02_MyAccount extends BasePage {
+	
+	HomePageObject homePage;
+	RegisterPageObject registerPage;
+	
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 	@BeforeClass
@@ -24,12 +30,30 @@ public class User_02_MyAccount extends BasePage {
 	}
 
 	@Test
-	public void TC_01() {
-		System.out.println("hi");
+	public void TC_01_Register_Empty_Data() {
+		homePage.clickToResgisterLink();
+			
+		registerPage.clickToRegisterButton();
+		
+		registerPage.getErrorMessageAtFirstNameTextbox();
+		registerPage.getErrorMessageAtLastNameTextbox();
+		registerPage.getErrorMessageAtEmailTextbox();
+		registerPage.getErrorMessageAtPasswordTextbox();
+		registerPage.getErrorMessageAtConfirmPasswordTextbox();
+		
 	}
 	
 	@Test
-	public void TC_02() {
+	public void TC_02_() {
+		homePage.clickToResgisterLink();
+		
+		registerPage.inputToFirstNameTextbox();
+		registerPage.inputToLastNameTextbox();
+		registerPage.inputToEmailTextbox();
+		registerPage.inputToPasswordTextbox();
+		registerPage.inputToConfirmPasswordTextbox();
+		
+		registerPage.clickToRegisterButton();
 	}
 
 	@AfterClass
@@ -37,4 +61,6 @@ public class User_02_MyAccount extends BasePage {
 		driver.quit();
 	}
 
+		
+	}
 }
