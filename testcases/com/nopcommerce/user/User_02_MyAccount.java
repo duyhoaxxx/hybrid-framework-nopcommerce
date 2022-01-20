@@ -41,7 +41,7 @@ public class User_02_MyAccount {
 	}
 
 	@Test
-	public void TC_01_Register_Empty_Data() {
+	public void Register_01_Empty_Data() {
 		homePage.clickToResgisterLink();
 		registerPage.clickToRegisterButton();
 
@@ -53,7 +53,7 @@ public class User_02_MyAccount {
 	}
 
 	@Test
-	public void TC_02_Resgister_Invalid_Email() {
+	public void Register_02_Invalid_Email() {
 		homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -68,7 +68,7 @@ public class User_02_MyAccount {
 	}
 	
 	@Test
-	public void TC_03_Resgister_Valid() {
+	public void Register_03_Valid() {
 		homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -85,7 +85,7 @@ public class User_02_MyAccount {
 	}
 	
 	@Test
-	public void TC_04_Resgister_Email_Exist() {
+	public void Register_04r_Email_Exist() {
 		homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -100,7 +100,7 @@ public class User_02_MyAccount {
 	}
 	
 	@Test
-	public void TC_05_Resgister_Password_Less_6Characters() {
+	public void Register_05_Password_Less_6Characters() {
 		homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -115,7 +115,7 @@ public class User_02_MyAccount {
 	}
 	
 	@Test
-	public void TC_06_Resgister_Password_NotMatch_ConfirmPassword() {
+	public void Register_06_Password_NotMatch_ConfirmPassword() {
 		homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
