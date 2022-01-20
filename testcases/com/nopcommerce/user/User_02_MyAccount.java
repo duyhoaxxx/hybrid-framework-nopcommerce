@@ -64,7 +64,7 @@ public class User_02_MyAccount {
 
 		registerPage.clickToRegisterButton();
 		
-		Assert.assertEquals(registerPage.getErrorWrongMessageAtEmailTextbox(), "Wrong email");
+		Assert.assertEquals(registerPage.getSummaryErrorMessage(), "Wrong email");
 	}
 	
 	@Test
@@ -80,6 +80,53 @@ public class User_02_MyAccount {
 		registerPage.clickToRegisterButton();
 		
 		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
+		
+		registerPage.clickToLogOutLink();
+	}
+	
+	@Test
+	public void TC_04_Resgister_Email_Exist() {
+		homePage.clickToResgisterLink();
+
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox("kanepham@gmail.com");
+		registerPage.inputToPasswordTextbox(password);
+		registerPage.inputToConfirmPasswordTextbox(password);
+
+		registerPage.clickToRegisterButton();
+		
+		Assert.assertEquals(registerPage.getSummaryErrorMessage(), "The specified email already exists");
+	}
+	
+	@Test
+	public void TC_05_Resgister_Password_Less_6Characters() {
+		homePage.clickToResgisterLink();
+
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox(email);
+		registerPage.inputToPasswordTextbox("123");
+		registerPage.inputToConfirmPasswordTextbox("123");
+
+		registerPage.clickToRegisterButton();
+		
+		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password must meet the following rules:\nmust have at least 6 characters");
+	}
+	
+	@Test
+	public void TC_06_Resgister_Password_NotMatch_ConfirmPassword() {
+		homePage.clickToResgisterLink();
+
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox(email);
+		registerPage.inputToPasswordTextbox(password);
+		registerPage.inputToConfirmPasswordTextbox("123578");
+
+		registerPage.clickToRegisterButton();
+		
+		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(), "The password and confirmation password do not match.");
 	}
 
 	@AfterClass

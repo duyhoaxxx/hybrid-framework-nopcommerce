@@ -31,16 +31,16 @@ public class RegisterPageObject extends BasePage {
 		return getElementText(driver, RegisterPageUI.EMAIL_EMPTY_ERR_MESSAGE);
 	}
 
-	public String getErrorWrongMessageAtEmailTextbox() {
-		return getElementText(driver, RegisterPageUI.EMAIL_WRONG_ERR_MESSAGE);
-	}
-
 	public String getErrorMessageAtPasswordTextbox() {
 		return getElementText(driver, RegisterPageUI.PASSWORD_ERR_MESSAGE);
 	}
 
 	public String getErrorMessageAtConfirmPasswordTextbox() {
 		return getElementText(driver, RegisterPageUI.CONFIRM_PASSWORD_ERR_MESSAGE);
+	}
+	
+	public String getSummaryErrorMessage() {
+		return getElementText(driver, RegisterPageUI.SUMMARY_ERR_MESSAGE);
 	}
 
 	public void inputToFirstNameTextbox(String firstName) {
@@ -67,6 +67,10 @@ public class RegisterPageObject extends BasePage {
 
 	public String getSuccessRegisterMessage() {
 		return getElementText(driver, RegisterPageUI.RESGISTER_SUCCESS_MESSAGE);
+	}
+
+	public void clickToLogOutLink() {
+		clickToElement(driver, RegisterPageUI.LOG_OUT_CLICK);
 	}
 
 }
