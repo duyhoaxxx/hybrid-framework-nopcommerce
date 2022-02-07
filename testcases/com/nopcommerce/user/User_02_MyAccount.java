@@ -11,13 +11,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import pageObjects.HomePageObject;
+import pageObjects.LoginPageObject;
 import pageObjects.RegisterPageObject;
 
 public class User_02_MyAccount {
 
 	private HomePageObject homePage;
 	private RegisterPageObject registerPage;
-	private String firstName, lastName, email, password;
+	private LoginPageObject loginPage;
+	private String firstName, lastName, email, password, invalidEmail, notFoundEmail;
 	WebDriver driver;
 	String projectPath = System.getProperty("user.dir");
 
@@ -26,23 +28,25 @@ public class User_02_MyAccount {
 		System.setProperty("webdriver.chrome.driver", projectPath + "\\browserDrivers\\chromedriver.exe");
 		driver = new ChromeDriver();
 
-		homePage = new HomePageObject(driver);
-		registerPage = new RegisterPageObject(driver);
-
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.get("https://demo.nopcommerce.com/");
+		homePage = new HomePageObject(driver);
+		homePage.zoomOut(driver);
 		// https://docs.google.com/document/d/16N5CVHwX4tVhtgvsKAggNCN6COeZSz2Onlfv8wDFo8E/edit
 
 		firstName = "Kane";
 		lastName = "Pham";
 		email = fakeEmail();
 		password = "123456";
+		invalidEmail = "123@.com";
+		notFoundEmail = "abc123@gmail.com";
 
 	}
 
 	@Test
 	public void Register_01_Empty_Data() {
 		homePage.clickToResgisterLink();
+		registerPage = new RegisterPageObject(driver);
 		registerPage.clickToRegisterButton();
 
 		Assert.assertEquals(registerPage.getErrorMessageAtFirstNameTextbox(), "First name is required.");
@@ -55,6 +59,7 @@ public class User_02_MyAccount {
 	@Test
 	public void Register_02_Invalid_Email() {
 		homePage.clickToResgisterLink();
+		registerPage = new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -63,13 +68,14 @@ public class User_02_MyAccount {
 		registerPage.inputToConfirmPasswordTextbox(password);
 
 		registerPage.clickToRegisterButton();
-		
+
 		Assert.assertEquals(registerPage.getSummaryErrorMessage(), "Wrong email");
 	}
-	
+
 	@Test
 	public void Register_03_Valid() {
 		homePage.clickToResgisterLink();
+		registerPage = new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -78,15 +84,17 @@ public class User_02_MyAccount {
 		registerPage.inputToConfirmPasswordTextbox(password);
 
 		registerPage.clickToRegisterButton();
-		
+
 		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
-		
+
 		registerPage.clickToLogOutLink();
+		homePage = new HomePageObject(driver);
 	}
-	
+
 	@Test
-	public void Register_04r_Email_Exist() {
+	public void Register_04_Email_Exist() {
 		homePage.clickToResgisterLink();
+		registerPage = new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -95,13 +103,14 @@ public class User_02_MyAccount {
 		registerPage.inputToConfirmPasswordTextbox(password);
 
 		registerPage.clickToRegisterButton();
-		
+
 		Assert.assertEquals(registerPage.getSummaryErrorMessage(), "The specified email already exists");
 	}
-	
+
 	@Test
 	public void Register_05_Password_Less_6Characters() {
 		homePage.clickToResgisterLink();
+		registerPage = new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -110,13 +119,15 @@ public class User_02_MyAccount {
 		registerPage.inputToConfirmPasswordTextbox("123");
 
 		registerPage.clickToRegisterButton();
-		
-		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(), "Password must meet the following rules:\nmust have at least 6 characters");
+
+		Assert.assertEquals(registerPage.getErrorMessageAtPasswordTextbox(),
+				"Password must meet the following rules:\nmust have at least 6 characters");
 	}
-	
+
 	@Test
 	public void Register_06_Password_NotMatch_ConfirmPassword() {
 		homePage.clickToResgisterLink();
+		registerPage = new RegisterPageObject(driver);
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -125,8 +136,56 @@ public class User_02_MyAccount {
 		registerPage.inputToConfirmPasswordTextbox("123578");
 
 		registerPage.clickToRegisterButton();
-		
-		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(), "The password and confirmation password do not match.");
+
+		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(),
+				"The password and confirmation password do not match.");
+	}
+
+	@Test
+	public void Login_01_Empty_Data() {
+		homePage.clickToLoginLink();
+		loginPage = new LoginPageObject(driver);
+
+		loginPage.clickToLoginButton();
+
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
+	}
+
+	@Test
+	public void Login_02_Invalid_Email() {
+		homePage.clickToLoginLink();
+		loginPage = new LoginPageObject(driver);
+
+		loginPage.inputToEmailTextbox(invalidEmail);
+		loginPage.clickToLoginButton();
+
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+	}
+
+	@Test
+	public void Login_03_Email_not_Register() {
+		homePage.clickToLoginLink();
+		loginPage = new LoginPageObject(driver);
+
+		loginPage.inputToEmailTextbox(notFoundEmail);
+		loginPage.clickToLoginButton();
+
+		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+	}
+
+	@Test
+	public void Login_04_Empty_Password() {
+
+	}
+
+	@Test
+	public void Login_05_Wrong_Password() {
+
+	}
+
+	@Test
+	public void Login_06_Success() {
+
 	}
 
 	@AfterClass
