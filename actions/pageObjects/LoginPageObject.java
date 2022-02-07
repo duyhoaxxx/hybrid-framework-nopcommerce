@@ -21,8 +21,15 @@ public class LoginPageObject extends BasePage {
 	}
 
 	public void inputToEmailTextbox(String invalidEmail) {
-		inputToEmailTextbox(invalidEmail);
-		
+		senkeyToElement(driver, LoginPageUI.EMAIL_TEXTBOX, invalidEmail);
+	}
+
+	public String getErrorMessageLoginUnsuccessful() {
+		return getElementText(driver, LoginPageUI.LOGIN_ERR_MESSAGE);
+	}
+
+	public void inputToPasswordTextbox(String password) {
+		senkeyToElement(driver, LoginPageUI.PASSWORD_TEXTBOX, password);
 	}
 
 }

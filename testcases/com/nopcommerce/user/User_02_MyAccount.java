@@ -170,22 +170,47 @@ public class User_02_MyAccount {
 		loginPage.inputToEmailTextbox(notFoundEmail);
 		loginPage.clickToLoginButton();
 
-		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Wrong email");
+		Assert.assertEquals(loginPage.getErrorMessageLoginUnsuccessful(),
+				"Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
 	}
 
 	@Test
 	public void Login_04_Empty_Password() {
+		homePage.clickToLoginLink();
+		loginPage = new LoginPageObject(driver);
 
+		loginPage.inputToEmailTextbox(email);
+		loginPage.clickToLoginButton();
+
+		Assert.assertEquals(loginPage.getErrorMessageLoginUnsuccessful(),
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 	}
 
 	@Test
 	public void Login_05_Wrong_Password() {
+		homePage.clickToLoginLink();
+		loginPage = new LoginPageObject(driver);
 
+		loginPage.inputToEmailTextbox(email);
+		loginPage.inputToPasswordTextbox("111111");
+		loginPage.clickToLoginButton();
+
+		Assert.assertEquals(loginPage.getErrorMessageLoginUnsuccessful(),
+				"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 	}
 
 	@Test
 	public void Login_06_Success() {
+		homePage.clickToLoginLink();
+		loginPage = new LoginPageObject(driver);
 
+		loginPage.inputToEmailTextbox("aa@gmail.com");
+		loginPage.inputToPasswordTextbox("123456");
+		loginPage.clickToLoginButton();
+
+		homePage = new HomePageObject(driver);
+		Assert.assertEquals(homePage.getTopicBlockTitle(), "Welcome to our store");
+		homePage.clickToLogOutLink();
 	}
 
 	@AfterClass
