@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import commons.BaseTest;
 import pageObjects.HomePageObject;
+import pageObjects.PageGeneratorManager;
 import pageObjects.RegisterPageObject;
 
 public class User_02_MyAccount extends BaseTest {
@@ -23,7 +24,7 @@ public class User_02_MyAccount extends BaseTest {
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		homePage = new HomePageObject(driver);
+		homePage = PageGeneratorManager.getHomePage(driver);
 		// https://docs.google.com/document/d/16N5CVHwX4tVhtgvsKAggNCN6COeZSz2Onlfv8wDFo8E/edit
 
 		firstName = "Kane";
@@ -34,8 +35,7 @@ public class User_02_MyAccount extends BaseTest {
 
 	@Test
 	public void Register_01_Empty_Data() {
-		homePage.clickToResgisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToResgisterLink();
 		registerPage.clickToRegisterButton();
 
 		Assert.assertEquals(registerPage.getErrorMessageAtFirstNameTextbox(), "First name is required.");
@@ -47,8 +47,7 @@ public class User_02_MyAccount extends BaseTest {
 
 	@Test
 	public void Register_02_Invalid_Email() {
-		homePage.clickToResgisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -63,8 +62,7 @@ public class User_02_MyAccount extends BaseTest {
 
 	@Test
 	public void Register_03_Valid() {
-		homePage.clickToResgisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -76,14 +74,12 @@ public class User_02_MyAccount extends BaseTest {
 
 		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
 
-		registerPage.clickToLogOutLink();
-		homePage = new HomePageObject(driver);
+		homePage = registerPage.clickToLogOutLink();
 	}
 
 	@Test
 	public void Register_04_Email_Exist() {
-		homePage.clickToResgisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -98,8 +94,7 @@ public class User_02_MyAccount extends BaseTest {
 
 	@Test
 	public void Register_05_Password_Less_6Characters() {
-		homePage.clickToResgisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -115,8 +110,7 @@ public class User_02_MyAccount extends BaseTest {
 
 	@Test
 	public void Register_06_Password_NotMatch_ConfirmPassword() {
-		homePage.clickToResgisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);

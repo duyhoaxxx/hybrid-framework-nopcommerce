@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import pageObjects.HomePageObject;
 import pageObjects.LoginPageObject;
+import pageObjects.PageGeneratorManager;
 import pageObjects.RegisterPageObject;
 
 public class User_04_MultiBrowser extends BaseTest {
@@ -26,7 +27,7 @@ public class User_04_MultiBrowser extends BaseTest {
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		homePage = new HomePageObject(driver);
+		homePage = PageGeneratorManager.getHomePage(driver);
 		// https://docs.google.com/document/d/16N5CVHwX4tVhtgvsKAggNCN6COeZSz2Onlfv8wDFo8E/edit
 
 		firstName = "Kane";
@@ -41,10 +42,9 @@ public class User_04_MultiBrowser extends BaseTest {
 	private String fakeEmail() {
 		return "AutoTest" + String.valueOf((new Random().nextInt(9999))) + "@gmail.com";
 	}
-	
+
 	private void CreatNewAccount() {
-		homePage.clickToResgisterLink();
-		registerPage = new RegisterPageObject(driver);
+		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
 		registerPage.inputToLastNameTextbox(lastName);
@@ -56,15 +56,12 @@ public class User_04_MultiBrowser extends BaseTest {
 
 		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
 
-		registerPage.clickToLogOutLink();
-		homePage = new HomePageObject(driver);
+		homePage = registerPage.clickToLogOutLink();
 	}
 
 	@Test
 	public void Login_01_Empty_Data() {
-		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
-
+		loginPage=homePage.clickToLoginLink();
 		loginPage.clickToLoginButton();
 
 		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
@@ -72,9 +69,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_02_Invalid_Email() {
-		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
-
+		loginPage=homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(invalidEmail);
 		loginPage.clickToLoginButton();
 
@@ -83,9 +78,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_03_Email_not_Register() {
-		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
-
+		loginPage=homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(notFoundEmail);
 		loginPage.clickToLoginButton();
 
@@ -95,9 +88,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_04_Empty_Password() {
-		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
-
+		loginPage=homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(email);
 		loginPage.clickToLoginButton();
 
@@ -107,9 +98,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_05_Wrong_Password() {
-		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
-
+		loginPage=homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox("111111");
 		loginPage.clickToLoginButton();
@@ -120,14 +109,12 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_06_Success() {
-		homePage.clickToLoginLink();
-		loginPage = new LoginPageObject(driver);
-
-		loginPage.inputToEmailTextbox("aa@gmail.com");
-		loginPage.inputToPasswordTextbox("123456");
+		loginPage=homePage.clickToLoginLink();
+		loginPage.inputToEmailTextbox(email);
+		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
 
-		homePage = new HomePageObject(driver);
+		homePage = PageGeneratorManager.getHomePage(driver);
 		Assert.assertEquals(homePage.getTopicBlockTitle(), "Welcome to our store");
 		homePage.clickToLogOutLink();
 	}

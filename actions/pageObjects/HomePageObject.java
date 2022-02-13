@@ -13,20 +13,23 @@ public class HomePageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	public void clickToResgisterLink() {
+	public RegisterPageObject clickToResgisterLink() {
 		clickToElement(driver, HomePageUI.REGISTER_CLICK);
+		return PageGeneratorManager.getRegisterPage(driver);
 	}
 
-	public void clickToLoginLink() {
+	public LoginPageObject clickToLoginLink() {
 		clickToElement(driver, HomePageUI.LOGIN_CLICK);
+		return PageGeneratorManager.getLoginPage(driver);
 	}
 
 	public String getTopicBlockTitle() {
 		return getElementText(driver, HomePageUI.TOPIC_BLOCK_TITLE);
 	}
 
-	public void clickToLogOutLink() {
+	public HomePageObject clickToLogOutLink() {
 		clickToElement(driver, HomePageUI.LOG_OUT_CLICK);
+		return PageGeneratorManager.getHomePage(driver);
 	}
 
 }

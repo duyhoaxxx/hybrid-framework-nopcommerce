@@ -13,9 +13,9 @@ public class RegisterPageObject extends BasePage {
 		this.driver = driver;
 	}
 
-	public void clickToRegisterButton() {
+	public RegisterPageObject clickToRegisterButton() {
 		clickToElement(driver, RegisterPageUI.REGISTER_BUTTON);
-
+		return PageGeneratorManager.getRegisterPage(driver);
 	}
 
 	public String getErrorMessageAtFirstNameTextbox() {
@@ -38,7 +38,7 @@ public class RegisterPageObject extends BasePage {
 	public String getErrorMessageAtConfirmPasswordTextbox() {
 		return getElementText(driver, RegisterPageUI.CONFIRM_PASSWORD_ERR_MESSAGE);
 	}
-	
+
 	public String getSummaryErrorMessage() {
 		return getElementText(driver, RegisterPageUI.SUMMARY_ERR_MESSAGE);
 	}
@@ -69,8 +69,8 @@ public class RegisterPageObject extends BasePage {
 		return getElementText(driver, RegisterPageUI.RESGISTER_SUCCESS_MESSAGE);
 	}
 
-	public void clickToLogOutLink() {
+	public HomePageObject clickToLogOutLink() {
 		clickToElement(driver, RegisterPageUI.LOG_OUT_CLICK);
+		return PageGeneratorManager.getHomePage(driver);
 	}
-
 }
