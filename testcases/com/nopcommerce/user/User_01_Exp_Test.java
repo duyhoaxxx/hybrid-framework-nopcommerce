@@ -12,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterClass;
 
-public class User_01_Register_Login {
+public class User_01_Exp_Test {
 	WebDriver driver;
 	BasePage basePage;
 	String projectPath = System.getProperty("user.dir");

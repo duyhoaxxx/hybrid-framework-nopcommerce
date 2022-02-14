@@ -61,24 +61,7 @@ public class User_02_MyAccount extends BaseTest {
 	}
 
 	@Test
-	public void Register_03_Valid() {
-		registerPage = homePage.clickToResgisterLink();
-
-		registerPage.inputToFirstNameTextbox(firstName);
-		registerPage.inputToLastNameTextbox(lastName);
-		registerPage.inputToEmailTextbox(email);
-		registerPage.inputToPasswordTextbox(password);
-		registerPage.inputToConfirmPasswordTextbox(password);
-
-		registerPage.clickToRegisterButton();
-
-		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
-
-		homePage = registerPage.clickToLogOutLink();
-	}
-
-	@Test
-	public void Register_04_Email_Exist() {
+	public void Register_03_Email_Exist() {
 		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -93,7 +76,7 @@ public class User_02_MyAccount extends BaseTest {
 	}
 
 	@Test
-	public void Register_05_Password_Less_6Characters() {
+	public void Register_04_Password_Less_6Characters() {
 		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -109,7 +92,7 @@ public class User_02_MyAccount extends BaseTest {
 	}
 
 	@Test
-	public void Register_06_Password_NotMatch_ConfirmPassword() {
+	public void Register_05_Password_NotMatch_ConfirmPassword() {
 		registerPage = homePage.clickToResgisterLink();
 
 		registerPage.inputToFirstNameTextbox(firstName);
@@ -122,6 +105,23 @@ public class User_02_MyAccount extends BaseTest {
 
 		Assert.assertEquals(registerPage.getErrorMessageAtConfirmPasswordTextbox(),
 				"The password and confirmation password do not match.");
+	}
+
+	@Test
+	public void Register_06_Valid() {
+		registerPage = homePage.clickToResgisterLink();
+
+		registerPage.inputToFirstNameTextbox(firstName);
+		registerPage.inputToLastNameTextbox(lastName);
+		registerPage.inputToEmailTextbox(email);
+		registerPage.inputToPasswordTextbox(password);
+		registerPage.inputToConfirmPasswordTextbox(password);
+
+		registerPage.clickToRegisterButton();
+
+		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
+
+		homePage = registerPage.clickToLogOutLink();
 	}
 
 	@AfterClass
