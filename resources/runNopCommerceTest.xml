@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="NopCommerce">
-	<test name="Run on Firefox">
+	<!-- <test name="Run on Firefox">
 		<parameter name="browser" value="h_firefox" />
 		<classes>
 			<class name="com.nopcommerce.user.User_02_MyAccount" />
 			<class name="com.nopcommerce.user.User_04_MultiBrowser" />
 		</classes>
-	</test>
+	</test> -->
 	<test name="Run on Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.nopcommerce.user.User_02_MyAccount" />
-			<class name="com.nopcommerce.user.User_04_MultiBrowser" />
+			<class name="com.nopcommerce.user.User_05_Switch_PageUI" />
 		</classes>
 	</test>
 </suite>

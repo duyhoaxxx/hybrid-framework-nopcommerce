@@ -14,4 +14,41 @@ public class PageGeneratorManager {
 	public static RegisterPageObject getRegisterPage(WebDriver driver) {
 		return new RegisterPageObject(driver);
 	}
+	
+	public static CustomerInfoPageObject getMyAccountPage(WebDriver driver) {
+		return new CustomerInfoPageObject(driver);
+	}
+
+	public static CustomerInfoPageObject getCustomerInfoPage(WebDriver driver) {
+		return new CustomerInfoPageObject(driver);
+	}
+
+	public static AddressPageObject getAddressPage(WebDriver driver) {
+		return new AddressPageObject(driver);
+	}
+	
+	public static OrdersPageObject getOrdersPage(WebDriver driver) {
+		return new OrdersPageObject(driver);
+	}
+
+	public static DownloadableProductsPageObject getDownloadableProductsPage(WebDriver driver) {
+		return new DownloadableProductsPageObject(driver);
+	}
+
+	public static BackInStockSubscriptionsPageObject getBackInStockSubsciptionsPage(WebDriver driver) {
+		return new BackInStockSubscriptionsPageObject(driver);
+	}
+
+	public static RewardPointsPageObject getRewardPointsPage(WebDriver driver) {
+		return new RewardPointsPageObject(driver);
+	}
+	
+	public static ChangePasswordPageObject getChangePasswordPage(WebDriver driver) {
+		return new ChangePasswordPageObject(driver);
+	}
+	
+	public static MyProductReviewsPageObject getMyProductReviewsPage(WebDriver driver) {
+		return new MyProductReviewsPageObject(driver);
+	}
+
 }

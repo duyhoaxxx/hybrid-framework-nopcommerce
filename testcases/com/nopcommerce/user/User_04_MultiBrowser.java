@@ -28,7 +28,6 @@ public class User_04_MultiBrowser extends BaseTest {
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
 		homePage = PageGeneratorManager.getHomePage(driver);
-		// https://docs.google.com/document/d/16N5CVHwX4tVhtgvsKAggNCN6COeZSz2Onlfv8wDFo8E/edit
 
 		firstName = "Kane";
 		lastName = "Pham";
@@ -61,7 +60,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_01_Empty_Data() {
-		loginPage=homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginLink();
 		loginPage.clickToLoginButton();
 
 		Assert.assertEquals(loginPage.getErrorMessageAtEmailTextbox(), "Please enter your email");
@@ -69,7 +68,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_02_Invalid_Email() {
-		loginPage=homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(invalidEmail);
 		loginPage.clickToLoginButton();
 
@@ -78,7 +77,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_03_Email_not_Register() {
-		loginPage=homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(notFoundEmail);
 		loginPage.clickToLoginButton();
 
@@ -88,7 +87,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_04_Empty_Password() {
-		loginPage=homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(email);
 		loginPage.clickToLoginButton();
 
@@ -98,7 +97,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_05_Wrong_Password() {
-		loginPage=homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox("111111");
 		loginPage.clickToLoginButton();
@@ -109,7 +108,7 @@ public class User_04_MultiBrowser extends BaseTest {
 
 	@Test
 	public void Login_06_Success() {
-		loginPage=homePage.clickToLoginLink();
+		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox(password);
 		loginPage.clickToLoginButton();
@@ -123,5 +122,4 @@ public class User_04_MultiBrowser extends BaseTest {
 	public void afterClass() {
 		driver.quit();
 	}
-
 }
