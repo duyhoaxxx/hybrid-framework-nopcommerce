@@ -1,14 +1,14 @@
-package pageObjects;
+package pageObjects.nopCommerce.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
 import pageUIs.BackInStockSubscriptionsPageUI;
 
-public class BackInStockSubscriptionsPageObject extends BasePage {
+public class UserBackInStockSubscriptionsPageObject extends BasePage {
 	private WebDriver driver;
 
-	public BackInStockSubscriptionsPageObject(WebDriver driver) {
+	public UserBackInStockSubscriptionsPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 	

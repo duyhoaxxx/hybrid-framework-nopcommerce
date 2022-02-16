@@ -1,14 +1,14 @@
-package pageObjects;
+package pageObjects.nopCommerce.user;
 
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
 import pageUIs.ChangePasswordPageUI;
 
-public class ChangePasswordPageObject extends BasePage {
+public class UserChangePasswordPageObject extends BasePage {
 	private WebDriver driver;
 
-	public ChangePasswordPageObject(WebDriver driver) {
+	public UserChangePasswordPageObject(WebDriver driver) {
 		this.driver = driver;
 	}
 	

@@ -10,16 +10,16 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RegisterPageObject;
+import commons.PageGeneratorManager;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
 
-public class User_04_MultiBrowser extends BaseTest {
+public class User_04_Login_MultiBrowser extends BaseTest {
 
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
 	WebDriver driver;
 	private String firstName, lastName, email, password, invalidEmail, notFoundEmail;
 
@@ -27,7 +27,7 @@ public class User_04_MultiBrowser extends BaseTest {
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 
 		firstName = "Kane";
 		lastName = "Pham";
@@ -111,9 +111,8 @@ public class User_04_MultiBrowser extends BaseTest {
 		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox(password);
-		loginPage.clickToLoginButton();
+		homePage = loginPage.clickToLoginButton();
 
-		homePage = PageGeneratorManager.getHomePage(driver);
 		Assert.assertEquals(homePage.getTopicBlockTitle(), "Welcome to our store");
 		homePage.clickToLogOutLink();
 	}

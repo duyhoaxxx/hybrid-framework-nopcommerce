@@ -10,32 +10,32 @@ import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import commons.BaseTest;
-import pageObjects.AddressPageObject;
-import pageObjects.BackInStockSubscriptionsPageObject;
-import pageObjects.ChangePasswordPageObject;
-import pageObjects.CustomerInfoPageObject;
-import pageObjects.DownloadableProductsPageObject;
-import pageObjects.HomePageObject;
-import pageObjects.LoginPageObject;
-import pageObjects.MyProductReviewsPageObject;
-import pageObjects.OrdersPageObject;
-import pageObjects.PageGeneratorManager;
-import pageObjects.RegisterPageObject;
-import pageObjects.RewardPointsPageObject;
+import commons.PageGeneratorManager;
+import pageObjects.nopCommerce.user.UserAddressPageObject;
+import pageObjects.nopCommerce.user.UserBackInStockSubscriptionsPageObject;
+import pageObjects.nopCommerce.user.UserChangePasswordPageObject;
+import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
+import pageObjects.nopCommerce.user.UserDownloadableProductsPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
+import pageObjects.nopCommerce.user.UserLoginPageObject;
+import pageObjects.nopCommerce.user.UserMyProductReviewsPageObject;
+import pageObjects.nopCommerce.user.UserOrdersPageObject;
+import pageObjects.nopCommerce.user.UserRegisterPageObject;
+import pageObjects.nopCommerce.user.UserRewardPointsPageObject;
 
 public class User_05_Switch_Page extends BaseTest {
 
-	private HomePageObject homePage;
-	private RegisterPageObject registerPage;
-	private LoginPageObject loginPage;
-	private CustomerInfoPageObject customerInfoPage;
-	private AddressPageObject addressPage;
-	private OrdersPageObject ordersPage;
-	private DownloadableProductsPageObject downloadPage;
-	private BackInStockSubscriptionsPageObject subsciptionsPage;
-	private RewardPointsPageObject rewardPointsPage;
-	private ChangePasswordPageObject changePasswordPage;
-	private MyProductReviewsPageObject productReviewsPage;
+	private UserHomePageObject homePage;
+	private UserRegisterPageObject registerPage;
+	private UserLoginPageObject loginPage;
+	private UserCustomerInfoPageObject customerInfoPage;
+	private UserAddressPageObject addressPage;
+	private UserOrdersPageObject ordersPage;
+	private UserDownloadableProductsPageObject downloadPage;
+	private UserBackInStockSubscriptionsPageObject subsciptionsPage;
+	private UserRewardPointsPageObject rewardPointsPage;
+	private UserChangePasswordPageObject changePasswordPage;
+	private UserMyProductReviewsPageObject productReviewsPage;
 	WebDriver driver;
 	private String firstName, lastName, email, password;
 
@@ -43,7 +43,7 @@ public class User_05_Switch_Page extends BaseTest {
 	@BeforeClass
 	public void beforeClass(String browserName) {
 		driver = getBrowserDriver(browserName);
-		homePage = PageGeneratorManager.getHomePage(driver);
+		homePage = PageGeneratorManager.getUserHomePage(driver);
 
 		firstName = "Kane";
 		lastName = "Pham";
@@ -71,47 +71,46 @@ public class User_05_Switch_Page extends BaseTest {
 
 		homePage = registerPage.clickToLogOutLink();
 	}
-	
+
 	@Test
 	public void TC_02_Login() {
 		loginPage = homePage.clickToLoginLink();
 		loginPage.inputToEmailTextbox(email);
 		loginPage.inputToPasswordTextbox(password);
-		loginPage.clickToLoginButton();
+		homePage = loginPage.clickToLoginButton();
 
-		homePage = PageGeneratorManager.getHomePage(driver);
 		Assert.assertEquals(homePage.getTopicBlockTitle(), "Welcome to our store");
 	}
-	
+
 	@Test
 	public void TC_03_Customer_Info() {
 		customerInfoPage = homePage.clickToMyAccountLink();
 		Assert.assertTrue(customerInfoPage.isCustomerInfoPageDisplayed());
 	}
-	
+
 	@Test
 	public void TC_04_Switch_Page() {
 		addressPage = customerInfoPage.openAddressPage(driver);
 		Assert.assertTrue(addressPage.isAddressesPageDisplayed());
-		
+
 		ordersPage = addressPage.openOrdersPage(driver);
 		Assert.assertTrue(ordersPage.isOrdersPageDisplayed());
-		
+
 		downloadPage = ordersPage.openDownloadableProductsPage(driver);
 		Assert.assertTrue(downloadPage.isDownloadableProductsPageDisplayed());
-		
+
 		subsciptionsPage = downloadPage.openBackInStockSubsciptionsPage(driver);
 		Assert.assertTrue(subsciptionsPage.isBackInStockSubscriptionsPageDisplayed());
-		
+
 		rewardPointsPage = subsciptionsPage.openRewardPointsPage(driver);
 		Assert.assertTrue(rewardPointsPage.isRewardPointsPageDisplayed());
-		
+
 		changePasswordPage = rewardPointsPage.openChangePasswordPage(driver);
 		Assert.assertTrue(changePasswordPage.isChangePasswordPageDisplayed());
-		
+
 		productReviewsPage = changePasswordPage.openMyProductReviewsPage(driver);
 		Assert.assertTrue(productReviewsPage.isMyProductReviewsPageDisplayed());
-		
+
 		customerInfoPage = productReviewsPage.openCustomerInfoPage(driver);
 		Assert.assertTrue(customerInfoPage.isCustomerInfoPageDisplayed());
 	}

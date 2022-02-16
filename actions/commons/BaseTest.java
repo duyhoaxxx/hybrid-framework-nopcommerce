@@ -45,7 +45,7 @@ public class BaseTest {
 		} else
 			throw new RuntimeException("Browser nem invalid.");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.get("https://demo.nopcommerce.com/");
+		driver.get(GlobalConstants.PORTAL_PAGE_URL);
 		return driver;
 	}
 }
