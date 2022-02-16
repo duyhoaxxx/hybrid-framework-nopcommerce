@@ -1,4 +1,4 @@
-package pageUIs;
+package pageUIs.nopCommerce.user;
 
 public class LoginPageUI {
 	public static final String LOGIN_BUTTON = "//button[@class='button-1 login-button']";

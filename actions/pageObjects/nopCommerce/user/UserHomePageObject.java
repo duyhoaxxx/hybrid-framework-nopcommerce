@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
-import pageUIs.HomePageUI;
+import pageUIs.nopCommerce.user.HomePageUI;
 
 public class UserHomePageObject extends BasePage {
 
@@ -26,11 +26,6 @@ public class UserHomePageObject extends BasePage {
 
 	public String getTopicBlockTitle() {
 		return getElementText(driver, HomePageUI.TOPIC_BLOCK_TITLE);
-	}
-
-	public UserHomePageObject clickToLogOutLink() {
-		clickToElement(driver, HomePageUI.LOG_OUT_CLICK);
-		return PageGeneratorManager.getUserHomePage(driver);
 	}
 
 	public UserCustomerInfoPageObject clickToMyAccountLink() {

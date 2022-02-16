@@ -13,15 +13,17 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import pageObjects.nopCommerce.admin.AdminLoginPageObject;
 import pageObjects.nopCommerce.user.UserAddressPageObject;
 import pageObjects.nopCommerce.user.UserBackInStockSubscriptionsPageObject;
 import pageObjects.nopCommerce.user.UserChangePasswordPageObject;
 import pageObjects.nopCommerce.user.UserCustomerInfoPageObject;
 import pageObjects.nopCommerce.user.UserDownloadableProductsPageObject;
+import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserMyProductReviewsPageObject;
 import pageObjects.nopCommerce.user.UserOrdersPageObject;
 import pageObjects.nopCommerce.user.UserRewardPointsPageObject;
-import pageUIs.BasePageUI;
+import pageUIs.nopCommerce.user.BasePageUI;
 
 public class BasePage {
 
@@ -332,6 +334,13 @@ public class BasePage {
 				getWebElement(driver, xpathlocator));
 	}
 
+	public WebElement getShadowDOM(WebDriver driver, String locator) {
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+		WebElement element = (WebElement) jsExecutor.executeScript("return arguments[0].shadowRoot;",
+				getWebElement(driver, locator));
+		return element;
+	}
+
 	public String getElementValidationMessage(WebDriver driver, String xpathlocator) {
 		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 		return (String) jsExecutor.executeScript("return arguments[0].validationMessage;",
@@ -412,5 +421,15 @@ public class BasePage {
 	public UserMyProductReviewsPageObject openMyProductReviewsPage(WebDriver driver) {
 		clickToElement(driver, BasePageUI.MY_PRODUCT_REVIEWS_LINK);
 		return PageGeneratorManager.getUserMyProductReviewsPage(driver);
+	}
+
+	public UserHomePageObject ClickToLogoutLinkAtUserPage(WebDriver driver) {
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_USER);
+		return PageGeneratorManager.getUserHomePage(driver);
+	}
+
+	public AdminLoginPageObject ClickToLogoutLinkAtAdminPage(WebDriver driver) {
+		clickToElement(driver, BasePageUI.LOGOUT_LINK_AT_ADMIN);
+		return PageGeneratorManager.getAdminLoginPage(driver);
 	}
 }

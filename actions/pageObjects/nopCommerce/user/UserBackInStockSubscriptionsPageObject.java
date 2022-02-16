@@ -3,7 +3,7 @@ package pageObjects.nopCommerce.user;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.BackInStockSubscriptionsPageUI;
+import pageUIs.nopCommerce.user.BackInStockSubscriptionsPageUI;
 
 public class UserBackInStockSubscriptionsPageObject extends BasePage {
 	private WebDriver driver;

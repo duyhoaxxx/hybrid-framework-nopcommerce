@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
 import commons.PageGeneratorManager;
-import pageUIs.RegisterPageUI;
+import pageUIs.nopCommerce.user.RegisterPageUI;
 
 public class UserRegisterPageObject extends BasePage {
 
@@ -68,10 +68,5 @@ public class UserRegisterPageObject extends BasePage {
 
 	public String getSuccessRegisterMessage() {
 		return getElementText(driver, RegisterPageUI.RESGISTER_SUCCESS_MESSAGE);
-	}
-
-	public UserHomePageObject clickToLogOutLink() {
-		clickToElement(driver, RegisterPageUI.LOG_OUT_CLICK);
-		return PageGeneratorManager.getUserHomePage(driver);
 	}
 }

@@ -121,7 +121,7 @@ public class User_02_MyAccount_Register extends BaseTest {
 
 		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
 
-		homePage = registerPage.clickToLogOutLink();
+		homePage = registerPage.ClickToLogoutLinkAtUserPage(driver);
 	}
 
 	@AfterClass

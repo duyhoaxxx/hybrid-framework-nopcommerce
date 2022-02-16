@@ -3,7 +3,7 @@ package pageObjects.nopCommerce.user;
 import org.openqa.selenium.WebDriver;
 
 import commons.BasePage;
-import pageUIs.MyProductReviewsPageUI;
+import pageUIs.nopCommerce.user.MyProductReviewsPageUI;
 
 public class UserMyProductReviewsPageObject extends BasePage {
 	private WebDriver driver;

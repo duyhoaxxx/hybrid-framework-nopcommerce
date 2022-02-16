@@ -55,7 +55,7 @@ public class User_04_Login_MultiBrowser extends BaseTest {
 
 		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
 
-		homePage = registerPage.clickToLogOutLink();
+		homePage = registerPage.ClickToLogoutLinkAtUserPage(driver);
 	}
 
 	@Test
@@ -114,7 +114,7 @@ public class User_04_Login_MultiBrowser extends BaseTest {
 		homePage = loginPage.clickToLoginButton();
 
 		Assert.assertEquals(homePage.getTopicBlockTitle(), "Welcome to our store");
-		homePage.clickToLogOutLink();
+		homePage.ClickToLogoutLinkAtUserPage(driver);
 	}
 
 	@AfterClass

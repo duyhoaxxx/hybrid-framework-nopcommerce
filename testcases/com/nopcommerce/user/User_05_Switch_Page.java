@@ -69,7 +69,7 @@ public class User_05_Switch_Page extends BaseTest {
 
 		Assert.assertEquals(registerPage.getSuccessRegisterMessage(), "Your registration completed");
 
-		homePage = registerPage.clickToLogOutLink();
+		homePage = registerPage.ClickToLogoutLinkAtUserPage(driver);
 	}
 
 	@Test

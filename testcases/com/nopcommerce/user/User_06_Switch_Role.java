@@ -12,10 +12,12 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import commons.GlobalConstants;
 import commons.PageGeneratorManager;
+import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
 import pageObjects.nopCommerce.user.UserLoginPageObject;
 import pageObjects.nopCommerce.user.UserRegisterPageObject;
+import pageUIs.nopCommerce.admin.AdminLoginPageUI;
 
 public class User_06_Switch_Role extends BaseTest {
 
@@ -23,6 +25,7 @@ public class User_06_Switch_Role extends BaseTest {
 	private UserRegisterPageObject userRegisterPage;
 	private UserLoginPageObject userLoginPage;
 	private AdminLoginPageObject adminLoginPage;
+	private AdminDashboardPageObject adminDashboardPage;
 	WebDriver driver;
 	private String firstName, lastName, email, password;
 
@@ -56,7 +59,7 @@ public class User_06_Switch_Role extends BaseTest {
 
 		Assert.assertEquals(userRegisterPage.getSuccessRegisterMessage(), "Your registration completed");
 
-		userHomePage = userRegisterPage.clickToLogOutLink();
+		userHomePage = userRegisterPage.ClickToLogoutLinkAtUserPage(driver);
 	}
 
 	@Test
@@ -65,14 +68,16 @@ public class User_06_Switch_Role extends BaseTest {
 		userHomePage = userLoginPage.LoginAsUser(email, password);
 
 		Assert.assertEquals(userHomePage.getTopicBlockTitle(), "Welcome to our store");
+		userHomePage = userHomePage.ClickToLogoutLinkAtUserPage(driver);
 	}
 
 	@Test
 	public void TC_03_Login_Admin() {
 		userHomePage.openPageUrl(driver, GlobalConstants.ADMIN_PAGE_URL);
 		adminLoginPage = PageGeneratorManager.getAdminLoginPage(driver);
-		
-		Assert.assertEquals(userHomePage.getTopicBlockTitle(), "Welcome to our store");
+		adminDashboardPage = adminLoginPage.LoginAsUser(AdminLoginPageUI.EMAIL_ADMIN, AdminLoginPageUI.PASSWORD_ADMIN);
+		Assert.assertTrue(adminDashboardPage.isDashboardPageDisplayed());
+		adminLoginPage=adminDashboardPage.ClickToLogoutLinkAtAdminPage(driver);
 	}
 
 	@AfterClass
