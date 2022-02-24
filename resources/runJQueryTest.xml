@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="jQuery">
+	<!-- <test name="Run on Firefox">
+		<parameter name="browser" value="h_firefox" />
+		<classes>
+			<class name="com.nopcommerce.user.User_02_MyAccount" />
+			<class name="com.nopcommerce.user.User_04_MultiBrowser" />
+		</classes>
+	</test> -->
+	<parameter name="url" value="https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/" />
+	<test name="Run on Chrome">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.jquery.datatable.Topic_10_DataTable_DataGrid" />
+		</classes>
+	</test>
+</suite>
