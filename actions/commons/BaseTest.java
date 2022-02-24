@@ -14,9 +14,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
 	private enum BrowserList {
-		FIREFOX, H_FIREFOX, CHROME, H_CHROME, EDGE, OPERA, COCCOC
+		FIREFOX, H_FIREFOX, CHROME, H_CHROME, EDGE, OPERA, COCCOC, PHANTOM
 	};
+
 	private WebDriver driver;
+
 	protected WebDriver getBrowserDriver(String browserName) {
 		BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
 		if (browserList == BrowserList.FIREFOX) {
@@ -45,9 +47,16 @@ public class BaseTest {
 			driver = new OperaDriver();
 		} else if (browserList == BrowserList.COCCOC) {
 			WebDriverManager.chromedriver().driverVersion("93.0.4577.63").setup();
-			driver = new OperaDriver();
+			ChromeOptions options = new ChromeOptions();
+			if (GlobalConstants.OS_NAME.startsWith("Windows")) {
+				options.setBinary("C:\\Program File (x86)\\CocCoc\\Browser\\Application\\browser.exe");
+				driver = new ChromeDriver(options);
+			} else {
+				options.setBinary("Mac OS...");
+			}
+
 		} else
-			throw new RuntimeException("Browser nem invalid.");
+			throw new RuntimeException("Browser is not support.");
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		driver.get(GlobalConstants.PORTAL_PAGE_URL);
 		return driver;
