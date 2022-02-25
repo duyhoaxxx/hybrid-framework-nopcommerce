@@ -5,6 +5,7 @@ import java.util.List;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -139,11 +140,11 @@ public class BasePage {
 		return driver.findElement(getByXpath(xpathLocator));
 	}
 
-	private List<WebElement> getListWebElement(WebDriver driver, String xpathLocator) {
+	public List<WebElement> getListWebElement(WebDriver driver, String xpathLocator) {
 		return driver.findElements(getByXpath(xpathLocator));
 	}
 
-	private List<WebElement> getListWebElement(WebDriver driver, String xpathLocator, String... dynamicValues) {
+	public List<WebElement> getListWebElement(WebDriver driver, String xpathLocator, String... dynamicValues) {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
 		return driver.findElements(getByXpath(xpathLocator));
 	}
@@ -160,6 +161,7 @@ public class BasePage {
 	}
 
 	public void senkeyToElement(WebDriver driver, String xpathLocator, String key) {
+		waitForElementVisible(driver, xpathLocator);
 		WebElement element = getWebElement(driver, xpathLocator);
 		element.clear();
 		element.sendKeys(key);
@@ -167,14 +169,23 @@ public class BasePage {
 
 	public void senkeyToElement(WebDriver driver, String xpathLocator, String key, String... dynamicValues) {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		waitForElementVisible(driver, xpathLocator);
 		WebElement element = getWebElement(driver, xpathLocator);
 		element.clear();
 		element.sendKeys(key);
 	}
 
 	public void selectItemInDefaultDropdown(WebDriver driver, String xpathLocator, String textItem) {
+		waitForElementVisible(driver, xpathLocator);
 		Select select = new Select(getWebElement(driver, xpathLocator));
-		select.selectByValue(textItem);
+		select.selectByVisibleText(textItem);
+	}
+	
+	public void selectItemInDefaultDropdown(WebDriver driver, String xpathLocator, String textItem, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		waitForElementVisible(driver, xpathLocator);
+		Select select = new Select(getWebElement(driver, xpathLocator));
+		select.selectByVisibleText(textItem);
 	}
 
 	public String getFirstSelectedItemDefaultDropdown(WebDriver driver, String xpathLocator) {
@@ -283,13 +294,34 @@ public class BasePage {
 	public int getElementSize(WebDriver driver, String xpathLocator) {
 		return getListWebElement(driver, xpathLocator).size();
 	}
+	
+	public int getElementSize(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		return getListWebElement(driver, xpathLocator).size();
+	}
 
 	public void checkToDefaultCheckbox(WebDriver driver, String xpathLocator) {
+		waitForElementClickable(driver, xpathLocator);
+		if (!isElementSelected(driver, xpathLocator))
+			getWebElement(driver, xpathLocator).click();
+	}
+	
+	public void checkToDefaultCheckbox(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		waitForElementClickable(driver, xpathLocator);
 		if (!isElementSelected(driver, xpathLocator))
 			getWebElement(driver, xpathLocator).click();
 	}
 
 	public void uncheckToDefaultCheckbox(WebDriver driver, String xpathLocator) {
+		waitForElementClickable(driver, xpathLocator);
+		if (isElementSelected(driver, xpathLocator))
+			getWebElement(driver, xpathLocator).click();
+	}
+	
+	public void uncheckToDefaultCheckbox(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		waitForElementClickable(driver, xpathLocator);
 		if (isElementSelected(driver, xpathLocator))
 			getWebElement(driver, xpathLocator).click();
 	}
@@ -299,11 +331,26 @@ public class BasePage {
 		return getWebElement(driver, xpathLocator).isDisplayed();
 	}
 
+	public boolean isElementDisplay(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		return getWebElement(driver, xpathLocator).isDisplayed();
+	}
+
 	public boolean isElementEnable(WebDriver driver, String xpathLocator) {
 		return getWebElement(driver, xpathLocator).isEnabled();
 	}
 
+	public boolean isElementEnable(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		return getWebElement(driver, xpathLocator).isEnabled();
+	}
+
 	public boolean isElementSelected(WebDriver driver, String xpathLocator) {
+		return getWebElement(driver, xpathLocator).isSelected();
+	}
+
+	public boolean isElementSelected(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
 		return getWebElement(driver, xpathLocator).isSelected();
 	}
 
@@ -318,6 +365,23 @@ public class BasePage {
 	public void hoverMouseToElement(WebDriver driver, String xpathLocator) {
 		Actions action = new Actions(driver);
 		action.moveToElement(getWebElement(driver, xpathLocator)).perform();
+	}
+
+	public void hoverMouseToElement(WebDriver driver, String xpathLocator, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		Actions action = new Actions(driver);
+		action.moveToElement(getWebElement(driver, xpathLocator)).perform();
+	}
+
+	public void pressKeyToElement(WebDriver driver, String xpathLocator, Keys key) {
+		Actions action = new Actions(driver);
+		action.sendKeys(getWebElement(driver, xpathLocator), key).perform();
+	}
+
+	public void pressKeyToElement(WebDriver driver, String xpathLocator, Keys key, String... dynamicValues) {
+		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		Actions action = new Actions(driver);
+		action.sendKeys(getWebElement(driver, xpathLocator), key).perform();
 	}
 
 	public void scrollToBottomPage(WebDriver driver) {
