@@ -180,8 +180,9 @@ public class BasePage {
 		Select select = new Select(getWebElement(driver, xpathLocator));
 		select.selectByVisibleText(textItem);
 	}
-	
-	public void selectItemInDefaultDropdown(WebDriver driver, String xpathLocator, String textItem, String... dynamicValues) {
+
+	public void selectItemInDefaultDropdown(WebDriver driver, String xpathLocator, String textItem,
+			String... dynamicValues) {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
 		waitForElementVisible(driver, xpathLocator);
 		Select select = new Select(getWebElement(driver, xpathLocator));
@@ -294,7 +295,7 @@ public class BasePage {
 	public int getElementSize(WebDriver driver, String xpathLocator) {
 		return getListWebElement(driver, xpathLocator).size();
 	}
-	
+
 	public int getElementSize(WebDriver driver, String xpathLocator, String... dynamicValues) {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
 		return getListWebElement(driver, xpathLocator).size();
@@ -305,7 +306,7 @@ public class BasePage {
 		if (!isElementSelected(driver, xpathLocator))
 			getWebElement(driver, xpathLocator).click();
 	}
-	
+
 	public void checkToDefaultCheckbox(WebDriver driver, String xpathLocator, String... dynamicValues) {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
 		waitForElementClickable(driver, xpathLocator);
@@ -318,7 +319,7 @@ public class BasePage {
 		if (isElementSelected(driver, xpathLocator))
 			getWebElement(driver, xpathLocator).click();
 	}
-	
+
 	public void uncheckToDefaultCheckbox(WebDriver driver, String xpathLocator, String... dynamicValues) {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
 		waitForElementClickable(driver, xpathLocator);
@@ -497,6 +498,16 @@ public class BasePage {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
 		WebDriverWait explicitWait = new WebDriverWait(driver, timeOutInSecound);
 		explicitWait.until(ExpectedConditions.elementToBeClickable(getByXpath(xpathLocator)));
+	}
+
+	public void uploadMultipleFiles(WebDriver driver, String... fileNames) {
+		String filePath = GlobalConstants.UPLOAD_FILE_FOLDER;
+		String fullFileName = "";
+		for (String file : fileNames) {
+			fullFileName = fullFileName + filePath + file + "\n";
+		}
+		fullFileName = fullFileName.trim();
+		getWebElement(driver, GlobalConstants.UPLOAD_FILE_TYPE).sendKeys(fullFileName);
 	}
 
 	public UserCustomerInfoPageObject openCustomerInfoPage(WebDriver driver) {

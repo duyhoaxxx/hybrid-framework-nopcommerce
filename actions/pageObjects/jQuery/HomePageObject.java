@@ -89,4 +89,13 @@ public class HomePageObject extends BasePage {
 	public void clickToIconByRowNumber(String rowIndex, String iconName) {
 		clickToElement(driver, HomePageUI.ICON_NAME_BY_ROW_NUMBER, rowIndex, iconName);
 	}
+
+	public boolean isFileLoadedByName(String... fileNames ) {
+		for (String fileName : fileNames) {
+			if(!isElementDisplay(driver, HomePageUI.FILE_NAME_UPLOAD, fileName)) {
+				return false;
+			}
+		}
+		return true;
+	}
 }

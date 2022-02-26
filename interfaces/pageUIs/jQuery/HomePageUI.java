@@ -14,4 +14,7 @@ public class HomePageUI {
 	public static final String CHECKBOX_BY_COLUMN_INDEX_AND_ROW_INDEX = "//tbody//tr[%s]//td[%s]//input[@type='checkbox']";
 	public static final String LOAD_BUTTON = "//button[@id='btnLoad']";
 	public static final String ICON_NAME_BY_ROW_NUMBER = "//tbody//tr[%s]//button[@title='%s']";
+	public static final String FILE_NAME_UPLOAD = "//p[@class='name' and text()='%s']";
+	
+	
 }

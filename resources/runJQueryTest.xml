@@ -4,7 +4,8 @@
 	<test name="Run on Chrome">
 		<parameter name="browser" value="chrome" />
 		<classes>
-			<class name="com.jquery.datatable.Topic_10_DataTable_DataGrid" />
+			<!-- <class name="com.jquery.datatable.Topic_10_DataTable_DataGrid" /> -->
+			<class name="com.jquery.datatable.Topic_11_Upload_File" />
 		</classes>
 	</test>
 </suite>
