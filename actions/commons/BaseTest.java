@@ -9,6 +9,8 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.opera.OperaDriver;
+import org.testng.Assert;
+import org.testng.Reporter;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -105,4 +107,60 @@ public class BaseTest {
 		return driver;
 	}
 
+	private boolean checkTrue(boolean condition) {
+		boolean pass = true;
+		try {
+			Assert.assertTrue(condition);
+			log.info(" -------------------------- PASSED -------------------------- ");
+		} catch (Throwable e) {
+			log.info(" -------------------------- FAILED -------------------------- ");
+			pass = false;
+
+			// Add lỗi vào ReportNG
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+		}
+		return pass;
+	}
+
+	protected boolean verifyTrue(boolean condition) {
+		return checkTrue(condition);
+	}
+
+	private boolean checkFailed(boolean condition) {
+		boolean pass = true;
+		try {
+			Assert.assertFalse(condition);
+			log.info(" -------------------------- PASSED -------------------------- ");
+		} catch (Throwable e) {
+			log.info(" -------------------------- FAILED -------------------------- ");
+			pass = false;
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+		}
+		return pass;
+	}
+
+	protected boolean verifyFalse(boolean condition) {
+		return checkFailed(condition);
+	}
+
+	private boolean checkEquals(Object actual, Object expected) {
+		boolean pass = true;
+		try {
+			Assert.assertEquals(actual, expected);
+			log.info(" -------------------------- PASSED -------------------------- ");
+		} catch (Throwable e) {
+			pass = false;
+			log.info(" -------------------------- FAILED -------------------------- ");
+			VerificationFailures.getFailures().addFailureForTest(Reporter.getCurrentTestResult(), e);
+			Reporter.getCurrentTestResult().setThrowable(e);
+		}
+		return pass;
+	}
+
+	protected boolean verifyEquals(Object actual, Object expected) {
+		return checkEquals(actual, expected);
+	}
+	
 }
