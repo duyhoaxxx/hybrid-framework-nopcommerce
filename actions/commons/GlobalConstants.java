@@ -3,6 +3,8 @@ package commons;
 import java.io.File;
 
 public class GlobalConstants {
+	public static final int LONG_TIMEOUT = 30;
+	public static final int SHORT_TIMEOUT = 6;
 	public static final String PORTAL_PAGE_URL = "https://demo.nopcommerce.com/";
 	public static final String ADMIN_PAGE_URL = "https://admin-demo.nopcommerce.com/";
 	public static final String OS_NAME = System.getProperty("os.name");

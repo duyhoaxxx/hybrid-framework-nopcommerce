@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <suite name="jQuery">
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+	</listeners>
+
 	<parameter name="url" value="https://www.jqueryscript.net/demo/CRUD-Data-Grid-Plugin-jQuery-Quickgrid/" />
 	<test name="Run on Chrome">
 		<parameter name="browser" value="chrome" />

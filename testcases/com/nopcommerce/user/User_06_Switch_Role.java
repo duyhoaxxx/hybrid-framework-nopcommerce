@@ -50,6 +50,7 @@ public class User_06_Switch_Role extends BaseTest {
 	public void TC_01_Register_Valid() {
 		userRegisterPage = userHomePage.clickToResgisterLink();
 
+		log.info("Register with email" + email + "   Pass: 123456");
 		userRegisterPage.inputToFirstNameTextbox(firstName);
 		userRegisterPage.inputToLastNameTextbox(lastName);
 		userRegisterPage.inputToEmailTextbox(email);
@@ -68,6 +69,9 @@ public class User_06_Switch_Role extends BaseTest {
 		userLoginPage = userHomePage.clickToLoginLink();
 		userHomePage = userLoginPage.LoginAsUser(email, password);
 
+		log.info("Verify");
+		verifyEquals(userHomePage.getTopicBlockTitle(), "Welcome to our store");
+		log.info("Assert");
 		Assert.assertEquals(userHomePage.getTopicBlockTitle(), "Welcome to our store");
 		userHomePage = userHomePage.ClickToLogoutLinkAtUserPage(driver);
 	}
@@ -78,7 +82,7 @@ public class User_06_Switch_Role extends BaseTest {
 		adminLoginPage = PageGeneratorManager.getAdminLoginPage(driver);
 		adminDashboardPage = adminLoginPage.LoginAsUser(AdminLoginPageUI.EMAIL_ADMIN, AdminLoginPageUI.PASSWORD_ADMIN);
 		Assert.assertTrue(adminDashboardPage.isDashboardPageDisplayed());
-		adminLoginPage=adminDashboardPage.ClickToLogoutLinkAtAdminPage(driver);
+		adminLoginPage = adminDashboardPage.ClickToLogoutLinkAtAdminPage(driver);
 	}
 
 	@AfterClass

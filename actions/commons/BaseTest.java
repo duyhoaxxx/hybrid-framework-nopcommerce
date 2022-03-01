@@ -2,6 +2,8 @@ package commons;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -15,11 +17,16 @@ import org.testng.Reporter;
 import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class BaseTest {
+	private WebDriver driver;
+	protected final Log log;
+
+	protected BaseTest() {
+		log = LogFactory.getLog(getClass());
+	}
+
 	private enum BrowserList {
 		FIREFOX, H_FIREFOX, CHROME, H_CHROME, EDGE, OPERA, COCCOC, PHANTOM
 	};
-
-	private WebDriver driver;
 
 	protected WebDriver getBrowserDriver(String browserName) {
 		BrowserList browserList = BrowserList.valueOf(browserName.toUpperCase());
@@ -162,5 +169,4 @@ public class BaseTest {
 	protected boolean verifyEquals(Object actual, Object expected) {
 		return checkEquals(actual, expected);
 	}
-	
 }
