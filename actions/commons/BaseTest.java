@@ -114,6 +114,10 @@ public class BaseTest {
 		return driver;
 	}
 
+	public WebDriver getDriverInstance() {
+		return this.driver;
+	}
+
 	private boolean checkTrue(boolean condition) {
 		boolean pass = true;
 		try {

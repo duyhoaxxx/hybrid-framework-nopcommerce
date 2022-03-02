@@ -5,3 +5,81 @@
 [INFO ] [2022-03-01 14:57:21,790] Verify
 [INFO ] [2022-03-01 14:57:21,839]  -------------------------- PASSED -------------------------- 
 [INFO ] [2022-03-01 14:57:21,839] Assert
+[INFO ] [2022-03-02 16:17:12,724] Register Success with emailAutoTest2408@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 16:17:18,029] Login Success with emailAutoTest2408@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 16:17:19,225] Switch to Addresses Page
+[INFO ] [2022-03-02 16:17:19,898] Switch to Orders Page
+[INFO ] [2022-03-02 16:17:20,522] Switch to Downloadable Products Page
+[INFO ] [2022-03-02 16:17:21,116] Switch to Back In Stock Subscriptions Page
+[INFO ] [2022-03-02 16:17:21,701] Switch to Reward Points Page
+[INFO ] [2022-03-02 16:17:22,289] Switch to Change Password Page
+[INFO ] [2022-03-02 16:17:22,898] Switch to My Product Reviews Page
+[INFO ] [2022-03-02 16:17:23,433] Switch to Customer Info Page
+[INFO ] [2022-03-02 17:25:04,762] Register Success with emailAutoTest4937@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 17:25:09,476] Login Success with emailAutoTest4937@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 17:25:10,558] Switch to Addresses Page
+[INFO ] [2022-03-02 17:25:11,175] Switch to Orders Page
+[INFO ] [2022-03-02 17:25:11,737] Switch to Downloadable Products Page
+[INFO ] [2022-03-02 17:25:12,618] Switch to Back In Stock Subscriptions Page
+[INFO ] [2022-03-02 17:25:13,684] Switch to Reward Points Page
+[INFO ] [2022-03-02 17:25:14,420] Switch to Change Password Page
+[INFO ] [2022-03-02 17:25:15,126] Switch to My Product Reviews Page
+[INFO ] [2022-03-02 17:25:15,583] Switch to Customer Info Page
+[INFO ] [2022-03-02 17:25:24,614] Register Success with emailAutoTest1184@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 17:25:29,496] Login Success with emailAutoTest1184@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 17:25:30,659] Switch to Addresses Page
+[INFO ] [2022-03-02 17:25:31,249] Switch to Orders Page
+[INFO ] [2022-03-02 17:25:31,811] Switch to Downloadable Products Page
+[INFO ] [2022-03-02 17:25:32,409] Switch to Back In Stock Subscriptions Page
+[INFO ] [2022-03-02 17:25:32,984] Switch to Reward Points Page
+[INFO ] [2022-03-02 17:25:33,557] Switch to Change Password Page
+[INFO ] [2022-03-02 17:25:34,119] Switch to My Product Reviews Page
+[INFO ] [2022-03-02 17:25:34,651] Switch to Customer Info Page
+[INFO ] [2022-03-02 21:16:00,473] Register with emailAutoTest154@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:16:04,469] Verify
+[INFO ] [2022-03-02 21:16:04,535]  -------------------------- PASSED -------------------------- 
+[INFO ] [2022-03-02 21:16:04,536] Assert
+[INFO ] [2022-03-02 21:19:28,523] Register Success with emailAutoTest6903@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:19:33,432] Login Success with emailAutoTest6903@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:19:34,585] Switch to Addresses Page
+[INFO ] [2022-03-02 21:19:36,717] Switch to Orders Page
+[INFO ] [2022-03-02 21:19:37,681] Switch to Downloadable Products Page
+[INFO ] [2022-03-02 21:19:39,505] Switch to Back In Stock Subscriptions Page
+[INFO ] [2022-03-02 21:19:40,485] Switch to Reward Points Page
+[INFO ] [2022-03-02 21:19:41,071] Switch to Change Password Page
+[INFO ] [2022-03-02 21:19:42,107] Switch to My Product Reviews Page
+[INFO ] [2022-03-02 21:19:42,629] Switch to Customer Info Page
+[INFO ] [2022-03-02 21:19:52,897] Register Success with emailAutoTest3063@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:19:58,612] Login Success with emailAutoTest3063@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:19:59,761] Switch to Addresses Page
+[INFO ] [2022-03-02 21:20:00,358] Switch to Orders Page
+[INFO ] [2022-03-02 21:20:00,976] Switch to Downloadable Products Page
+[INFO ] [2022-03-02 21:20:01,569] Switch to Back In Stock Subscriptions Page
+[INFO ] [2022-03-02 21:20:02,471] Switch to Reward Points Page
+[INFO ] [2022-03-02 21:20:03,044] Switch to Change Password Page
+[INFO ] [2022-03-02 21:20:03,650] Switch to My Product Reviews Page
+[INFO ] [2022-03-02 21:20:04,190] Switch to Customer Info Page
+[INFO ] [2022-03-02 21:27:49,913] Register Success with emailAutoTest9252@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:27:54,882] Login Success with emailAutoTest9252@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:27:56,073] Switch to Addresses Page
+[INFO ] [2022-03-02 21:27:56,642] Switch to Orders Page
+[INFO ] [2022-03-02 21:27:57,245] Switch to Downloadable Products Page
+[INFO ] [2022-03-02 21:27:57,824] Switch to Back In Stock Subscriptions Page
+[INFO ] [2022-03-02 21:27:58,422] Switch to Reward Points Page
+[INFO ] [2022-03-02 21:27:58,994] Switch to Change Password Page
+[INFO ] [2022-03-02 21:27:59,568] Switch to My Product Reviews Page
+[INFO ] [2022-03-02 21:28:00,073] Switch to Customer Info Page
+[INFO ] [2022-03-02 21:28:10,012] Register Success with emailAutoTest710@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:28:15,103] Login Success with emailAutoTest710@gmail.com   Pass: 123456
+[INFO ] [2022-03-02 21:28:16,469] Switch to Addresses Page
+[INFO ] [2022-03-02 21:28:17,035] Switch to Orders Page
+[INFO ] [2022-03-02 21:28:17,607] Switch to Downloadable Products Page
+[INFO ] [2022-03-02 21:28:18,178] Switch to Back In Stock Subscriptions Page
+[INFO ] [2022-03-02 21:28:18,755] Switch to Reward Points Page
+[INFO ] [2022-03-02 21:28:19,351] Switch to Change Password Page
+[INFO ] [2022-03-02 21:28:19,906] Switch to My Product Reviews Page
+[INFO ] [2022-03-02 21:28:20,416] Switch to Customer Info Page
+[INFO ] [2022-03-03 00:52:17,096] Register with emailAutoTest3062@gmail.com   Pass: 123456
+[INFO ] [2022-03-03 00:52:20,985] Verify
+[INFO ] [2022-03-03 00:52:21,055]  -------------------------- PASSED -------------------------- 
+[INFO ] [2022-03-03 00:52:21,055] Assert

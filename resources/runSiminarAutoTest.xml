@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="NopCommerce">
+
+	<listeners>
+		<listener class-name="commons.MethodListener" />
+		<listener class-name="reportConfig.ExtentTestListener" />
+	</listeners>
+
+	<test name="Run on Firefox">
+		<parameter name="browser" value="firefox" />
+		<classes>
+			<class name="com.nopcommerce.user.Seminar_AutoTest" />
+		</classes>
+	</test>
+</suite>
