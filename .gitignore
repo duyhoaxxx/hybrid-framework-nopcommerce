@@ -1,2 +1,5 @@
 /bin/
 /test-output/
+/extentReport/
+/allure-json/
+/ReportNGImage/

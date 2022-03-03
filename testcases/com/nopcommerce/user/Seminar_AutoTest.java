@@ -210,8 +210,10 @@ public class Seminar_AutoTest extends BaseTest {
 		Assert.assertTrue(customerInfoPage.isCustomerInfoPageDisplayed());
 	}
 
-	@AfterClass
-	public void afterClass() {
-		driver.quit();
+	@Parameters("browser")
+	@AfterClass(alwaysRun = true)
+	private void afterClass(String browserName) {
+		log.info("Post-Condition: Close browser " + browserName);
+		cleanBrowserAndDriver();
 	}
 }

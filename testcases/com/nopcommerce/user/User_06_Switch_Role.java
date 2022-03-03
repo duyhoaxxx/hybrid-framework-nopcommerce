@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import commons.BaseTest;
 import commons.GlobalConstants;
 import commons.PageGeneratorManager;
+import io.qameta.allure.Step;
 import pageObjects.nopCommerce.admin.AdminDashboardPageObject;
 import pageObjects.nopCommerce.admin.AdminLoginPageObject;
 import pageObjects.nopCommerce.user.UserHomePageObject;
@@ -77,6 +78,7 @@ public class User_06_Switch_Role extends BaseTest {
 	}
 
 	@Test
+	@Step("Login_Admin")
 	public void TC_03_Login_Admin() {
 		userHomePage.openPageUrl(driver, GlobalConstants.ADMIN_PAGE_URL);
 		adminLoginPage = PageGeneratorManager.getAdminLoginPage(driver);
@@ -85,8 +87,10 @@ public class User_06_Switch_Role extends BaseTest {
 		adminLoginPage = adminDashboardPage.ClickToLogoutLinkAtAdminPage(driver);
 	}
 
-	@AfterClass
-	public void afterClass() {
-		driver.quit();
+	@Parameters("browser")
+	@AfterClass(alwaysRun = true)
+	private void afterClass(String browserName) {
+		log.info("Post-Condition: Close browser " + browserName);
+		cleanBrowserAndDriver();
 	}
 }

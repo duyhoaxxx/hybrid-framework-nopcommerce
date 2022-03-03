@@ -48,7 +48,6 @@ public class AllureTestListener implements ITestListener {
 
 	@Override
 	public void onTestSkipped(ITestResult iTestResult) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
