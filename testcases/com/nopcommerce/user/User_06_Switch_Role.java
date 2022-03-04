@@ -1,7 +1,9 @@
 package com.nopcommerce.user;
 
 import java.util.Random;
+import java.util.Set;
 
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -28,6 +30,7 @@ public class User_06_Switch_Role extends BaseTest {
 	private AdminLoginPageObject adminLoginPage;
 	private AdminDashboardPageObject adminDashboardPage;
 	WebDriver driver;
+	public static Set<Cookie> LoginPageCookie;
 	private String firstName, lastName, email, password;
 
 	@Parameters("browser")
@@ -70,6 +73,7 @@ public class User_06_Switch_Role extends BaseTest {
 		userLoginPage = userHomePage.clickToLoginLink();
 		userHomePage = userLoginPage.LoginAsUser(email, password);
 
+		LoginPageCookie = userHomePage.getAllCookies(driver);
 		log.info("Verify");
 		verifyEquals(userHomePage.getTopicBlockTitle(), "Welcome to our store");
 		log.info("Assert");
@@ -85,6 +89,14 @@ public class User_06_Switch_Role extends BaseTest {
 		adminDashboardPage = adminLoginPage.LoginAsUser(AdminLoginPageUI.EMAIL_ADMIN, AdminLoginPageUI.PASSWORD_ADMIN);
 		Assert.assertTrue(adminDashboardPage.isDashboardPageDisplayed());
 		adminLoginPage = adminDashboardPage.ClickToLogoutLinkAtAdminPage(driver);
+
+		adminLoginPage.openPageUrl(driver, GlobalConstants.PORTAL_PAGE_URL);
+		userHomePage = PageGeneratorManager.getUserHomePage(driver);
+		userLoginPage = userHomePage.clickToLoginLink();
+
+		userLoginPage.setAllCookies(driver, User_06_Switch_Role.LoginPageCookie);
+		userLoginPage.sleepInSecond(5);
+		userLoginPage.refreshCurrentPage(driver);
 	}
 
 	@Parameters("browser")
