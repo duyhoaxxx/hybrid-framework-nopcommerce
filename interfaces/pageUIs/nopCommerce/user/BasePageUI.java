@@ -11,4 +11,11 @@ public class BasePageUI {
 	public static final String MY_PRODUCT_REVIEWS_LINK = "//div[@class='block block-account-navigation']//a[text()='My product reviews']";
 	public static final String LOGOUT_LINK_AT_USER = "//a[@class='ico-logout']";
 	public static final String LOGOUT_LINK_AT_ADMIN = "//a[text()='Logout']";
+
+	public static final String DYNAMIC_PAGE_HEADER = "//div[@class='footer']//a[text()='%s']";
+	public static final String DYNAMIC_PAGE_FOOTER = "//div[@class='header']//a[text()='%s']";
+	public static final String DYNAMIC_TEXTBOX_BY_ID = "//input[@id='%s']";
+	public static final String DYNAMIC_RADIO_BUTTON_BY_ID = "//input[@id='%s']";
+	public static final String DYNAMIC_DROPDOWN_BY_NAME = "//select[@name='%s']";
+	public static final String DYNAMIC_BUTTON_BY_TEXT = "//button[text()='%s']";
 }

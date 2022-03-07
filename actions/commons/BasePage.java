@@ -570,6 +570,42 @@ public class BasePage {
 		getWebElement(driver, GlobalConstants.UPLOAD_FILE_TYPE).sendKeys(fullFileName);
 	}
 
+	public void enterToTextboxByID(WebDriver driver, String textboxID, String value) {
+		String locator = getDynamicXpath(BasePageUI.DYNAMIC_TEXTBOX_BY_ID, textboxID);
+		waitForAllElementInvisible(driver, locator);
+		senkeyToElement(driver, locator, value);
+	}
+
+	public void clickToRadioButtonByID(WebDriver driver, String radioButtonID, String value) {
+		String locator = getDynamicXpath(BasePageUI.DYNAMIC_RADIO_BUTTON_BY_ID, radioButtonID);
+		waitForElementClickable(driver, locator);
+		clickToElement(driver, locator);
+	}
+
+	public void openHeaderPageByName(WebDriver driver, String headerPage) {
+		String locator = getDynamicXpath(BasePageUI.DYNAMIC_PAGE_HEADER, headerPage);
+		waitForElementClickable(driver, locator);
+		clickToElement(driver, locator);
+	}
+
+	public void openFooterPageByName(WebDriver driver, String footerPage) {
+		String locator = getDynamicXpath(BasePageUI.DYNAMIC_PAGE_FOOTER, footerPage);
+		waitForElementClickable(driver, locator);
+		clickToElement(driver, locator);
+	}
+
+	public void selectDropdownByName(WebDriver driver, String dropdownName, String value) {
+		String locator = getDynamicXpath(BasePageUI.DYNAMIC_DROPDOWN_BY_NAME, dropdownName);
+		selectItemInDefaultDropdown(driver, locator, value);
+	}
+
+	public void clickToButtonByText(WebDriver driver, String buttonText) {
+		String locator = getDynamicXpath(BasePageUI.DYNAMIC_BUTTON_BY_TEXT, buttonText);
+		waitForElementClickable(driver, locator);
+		clickToElement(driver, locator);
+	}
+
+	/////////////////////////////////////////////////////////////////////////////////////////////
 	public UserCustomerInfoPageObject openCustomerInfoPage(WebDriver driver) {
 		clickToElement(driver, BasePageUI.CUSTOMER_INFO_LINK);
 		return PageGeneratorManager.getUserCustomerInfoPage(driver);
