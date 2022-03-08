@@ -13,6 +13,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -503,6 +504,50 @@ public class BasePage {
 			return true;
 		}
 		return false;
+	}
+
+	public boolean isJQueryAJAXLoadedSuccess(WebDriver driver) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeoutInSecound);
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+		ExpectedCondition<Boolean> JQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				try {
+					return (Boolean) jsExecutor
+							.executeScript("return (window.jQuery != null) && (jQuery.active === 0);");
+				} catch (Exception e) {
+					return true;
+				}
+			}
+		};
+
+		return explicitWait.until(JQueryLoad);
+	}
+
+	public boolean areJQueryAndJSLoadedSuccess(WebDriver driver) {
+		WebDriverWait explicitWait = new WebDriverWait(driver, longTimeoutInSecound);
+		JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+
+		ExpectedCondition<Boolean> JQueryLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				try {
+					return ((Long) jsExecutor.executeScript("return jQuery.active") == 0);
+				} catch (Exception e) {
+					return true;
+				}
+			}
+		};
+
+		ExpectedCondition<Boolean> JsLoad = new ExpectedCondition<Boolean>() {
+			@Override
+			public Boolean apply(WebDriver driver) {
+				return jsExecutor.executeScript("return document.readyState").toString().equals("complete");
+			}
+		};
+
+		return explicitWait.until(JQueryLoad) && explicitWait.until(JsLoad);
 	}
 
 	public void waitForElementVisible(WebDriver driver, String xpathLocator) {
