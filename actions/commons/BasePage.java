@@ -308,11 +308,13 @@ public class BasePage {
 	}
 
 	public int getElementSize(WebDriver driver, String xpathLocator) {
+		waitForAllElementVisible(driver, xpathLocator);
 		return getListWebElement(driver, xpathLocator).size();
 	}
 
 	public int getElementSize(WebDriver driver, String xpathLocator, String... dynamicValues) {
 		xpathLocator = getDynamicXpath(xpathLocator, dynamicValues);
+		waitForAllElementVisible(driver, xpathLocator);
 		return getListWebElement(driver, xpathLocator).size();
 	}
 
