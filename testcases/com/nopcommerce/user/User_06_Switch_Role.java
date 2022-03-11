@@ -93,6 +93,7 @@ public class User_06_Switch_Role extends BaseTest {
 		adminLoginPage.openPageUrl(driver, GlobalConstants.PORTAL_PAGE_URL);
 		userHomePage = PageGeneratorManager.getUserHomePage(driver);
 		userLoginPage = userHomePage.clickToLoginLink();
+		showBrowserConsoleLogs(driver);
 
 		userLoginPage.setAllCookies(driver, User_06_Switch_Role.LoginPageCookie);
 		userLoginPage.sleepInSecond(5);
